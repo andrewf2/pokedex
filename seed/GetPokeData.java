@@ -3,7 +3,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
+
 
 
 
@@ -13,6 +15,7 @@ import json.QCJSON.JSONUtilities;
 
 public class GetPokeData implements Runnable{
 	private HashMap aMap = new HashMap();
+	
 	//public RestClient(HashSet<String> dex){
 	public void run() {
 		try{
@@ -31,11 +34,11 @@ public class GetPokeData implements Runnable{
 		System.out.println("Response Code : " + responseCode);
 		//buffered reader gets the inputstream from the server
 		JSONInputStream inFromClient = new JSONInputStream(con.getInputStream());
+		aMap = (HashMap)inFromClient.readObject();
 		
 		
 		setMap(aMap);
 		
-		System.out.println(getMap());
 		}catch(Exception e){
 			e.printStackTrace();
 			
@@ -47,4 +50,5 @@ public class GetPokeData implements Runnable{
 	public HashMap getMap(){
 		return aMap;
 	}
+	
 }

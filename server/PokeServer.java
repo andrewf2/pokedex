@@ -27,6 +27,7 @@ public class PokeServer{
 
 			System.out.println("Waiting for a message from the server.");
 			HashMap Map = (HashMap)inFromClient.readObject();
+			
 			System.out.println("Received:" +Map+" processing request for client");
 			myCommBean Response = new myCommBean("Done", 1, "Data"); 
 			outToClient.writeObject(Response);     
